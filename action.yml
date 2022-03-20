@@ -1,0 +1,6 @@
+name: 'Build docker image'
+description: 'Build the SQL Server image containing full text search'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
