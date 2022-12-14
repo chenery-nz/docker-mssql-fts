@@ -8,8 +8,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install gnupg2 curl -yq && \
     apt-get upgrade -yq && \
+    export UBUNTU_VERSION=`cat /etc/os-release | grep VERSION_ID | sed "s/VERSION_ID=//g" | sed "s/\"//g"` && \
     curl -s https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    curl -s https://packages.microsoft.com/config/ubuntu/${UBUNTU_VERSION}/mssql-server-${MSSQL_VERSION}.list | tee /etc/apt/sources.list.d/mssql-server-${MSSQL_VERSION}.list && \
+    curl -s https://packages.microsoft.com/config/ubuntu/$UBUNTU_VERSION/mssql-server-${MSSQL_VERSION}.list | tee /etc/apt/sources.list.d/mssql-server-${MSSQL_VERSION}.list && \
     apt-get update
 
 RUN apt install mssql-server mssql-server-fts -y
