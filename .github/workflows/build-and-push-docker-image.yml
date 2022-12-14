@@ -11,6 +11,10 @@ env:
 
 jobs:
   build-and-push-image:
+    strategy:
+      matrix:
+        mssql_version: [ 2019, 2022 ]
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -38,5 +42,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ matrix.mssql_version }}-${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
