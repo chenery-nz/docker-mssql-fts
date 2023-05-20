@@ -19,7 +19,7 @@ jobs:
       matrix:
         mssql_version: [ 2019, 2022 ]
 
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
