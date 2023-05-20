@@ -19,7 +19,7 @@ jobs:
       matrix:
         mssql_version: [ 2019, 2022 ]
 
-    runs-on: [self-hosted, linux, X64]
+    runs-on: [self-hosted]
     permissions:
       contents: read
       packages: write
