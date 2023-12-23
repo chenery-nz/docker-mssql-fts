@@ -21,12 +21,11 @@ jobs:
     strategy:
       matrix:
         mssql_version: [ 2019, 2022 ]
-
-      include:
-        - mssql_version: 2019
-          ubuntu_version: 20.04
-        - mssql_version: 2022
-          ubuntu_version: 22.04
+        include:
+          - mssql_version: 2019
+            ubuntu_version: 20.04
+          - mssql_version: 2022
+            ubuntu_version: 22.04
 
     runs-on: ubuntu-latest
     permissions:
