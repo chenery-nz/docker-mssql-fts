@@ -18,6 +18,12 @@ jobs:
     strategy:
       matrix:
         mssql_version: [ 2019, 2022 ]
+        
+      include:
+        - mssql_version: 2019
+          ubuntu_version: 20.04
+        - mssql_version: 2022
+          ubuntu_version: 22.04
 
     runs-on: ubuntu-latest
     permissions:
@@ -49,6 +55,7 @@ jobs:
           context: .
           build-args: |
             MSSQL_VERSION=${{ matrix.mssql_version }}
+            UBUNTU_VERSION=${{ matrix.ubuntu_version }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
