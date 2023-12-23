@@ -51,13 +51,22 @@ jobs:
           tags: |
             type=raw,${{ matrix.mssql_version }}
 
-      - name: Build and push Docker image
+      - name: Build docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           build-args: |
             MSSQL_VERSION=${{ matrix.mssql_version }}
             UBUNTU_VERSION=${{ matrix.ubuntu_version }}
-          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+      
+      - name: Push image
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
