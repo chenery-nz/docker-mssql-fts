@@ -63,7 +63,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       
       - name: Push image
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'schedule')
+        if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v6
         with:
           context: .
