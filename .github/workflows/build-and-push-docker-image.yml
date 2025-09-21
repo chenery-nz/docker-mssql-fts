@@ -27,7 +27,7 @@ jobs:
           - mssql_version: 2022
             ubuntu_version: 22.04
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       contents: read
       packages: write
